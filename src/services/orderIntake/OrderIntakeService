@@ -1,0 +1,326 @@
+import APIHelper from "../../context/ApiHelper";
+import API from "../../constants/API";
+
+const DaedalusOrderIntakeService = {
+  getItemsMaster: async () => {
+    try {
+      const response = await APIHelper(
+        "GET",
+        API.DaedalusOrderIntake.GetDaedalusItems,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error fetching Items Master data:", error);
+      throw error;
+    }
+  },
+
+  getItemsOptions: async () => {
+    try {
+      const response = await APIHelper(
+        "GET",
+        API.DaedalusOrderIntake.GetDaedalusItemsOptions,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error fetching Items Options data:", error);
+      throw error;
+    }
+  },
+
+  saveItemMaster: async (itemData) => {
+    try {
+      const response = await APIHelper(
+        "POST",
+        API.DaedalusOrderIntake.SaveDaedalusItem,
+        itemData,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error saving Item Master data:", error);
+      throw error;
+    }
+  },
+
+  setItemActive: async (itemId, isActive) => {
+    try {
+      const response = await APIHelper(
+        "POST",
+        API.DaedalusOrderIntake.SetDaedalusItemActive,
+        { itemId, isActive },
+      );
+      return response;
+    } catch (error) {
+      console.error("Error setting Item active status:", error);
+      throw error;
+    }
+  },
+
+  // customer master
+
+  getCustomers: async (search = "", includeInactive = true) => {
+    try {
+      const response = await APIHelper(
+        "GET",
+        API.DaedalusOrderIntake.GetDaedalusCustomers,
+        { search, includeInactive },
+      );
+      return response;
+    } catch (error) {
+      console.error("Error fetching Customers data:", error);
+      throw error;
+    }
+  },
+
+  saveCustomer: async (customerData) => {
+    try {
+      const response = await APIHelper(
+        "POST",
+        API.DaedalusOrderIntake.SaveDaedalusCustomer,
+        customerData,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error saving Customer data:", error);
+      throw error;
+    }
+  },
+
+  getAddresses: async (customerId, includeInactive = true) => {
+    try {
+      const response = await APIHelper(
+        "GET",
+        `${API.DaedalusOrderIntake.GetDaedalusCustomerAddresses}?customerId=${customerId}&includeInactive=${includeInactive}`,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error fetching Customer Addresses data:", error);
+      throw error;
+    }
+  },
+
+  saveAddress: async (addressData) => {
+    try {
+      const response = await APIHelper(
+        "POST",
+        API.DaedalusOrderIntake.SaveDaedalusCustomerAddress,
+        addressData,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error saving Customer Address data:", error);
+      throw error;
+    }
+  },
+
+  setCustomerActive: async (customerId) => {
+    try {
+      const response = await APIHelper(
+        "POST",
+        API.DaedalusOrderIntake.SetDaedalusCustomerActive,
+        customerId,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error setting Customer active status:", error);
+      throw error;
+    }
+  },
+
+  setAddressActive: async (addressId) => {
+    try {
+      const response = await APIHelper(
+        "POST",
+        API.DaedalusOrderIntake.SetDaedalusCustomerAddressActive,
+        addressId,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error setting Customer Address active status:", error);
+      throw error;
+    }
+  },
+
+  getAddressTypes: async () => {
+    try {
+      const response = await APIHelper(
+        "GET",
+        API.DaedalusOrderIntake.GetDaedalusAddressTypes,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error fetching Address Types data:", error);
+      throw error;
+    }
+  },
+
+  getOrders: async (search = "", onlyPending = false) => {
+    try {
+      const response = await APIHelper(
+        "GET",
+        API.DaedalusOrderIntake.GetDaedalusOrders,
+        {
+          search,
+          onlyPending,
+        },
+      );
+      return response;
+    } catch (error) {
+      console.error("Error fetching Orders data:", error);
+      throw error;
+    }
+  },
+
+  getInvoices: async (search = "") => {
+    try {
+      const response = await APIHelper(
+        "GET",
+        API.DaedalusOrderIntake.GetDaedalusInvoices,
+        {
+          search,
+        },
+      );
+      return response;
+    } catch (error) {
+      console.error("Error fetching Invoices data:", error);
+      throw error;
+    }
+  },
+
+  createOrder: async (orderData) => {
+    try {
+      const response = await APIHelper(
+        "POST",
+        API.DaedalusOrderIntake.CreateDaedalusOrder,
+        orderData,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error creating Order:", error);
+      throw error;
+    }
+  },
+
+  createInvoice: async (invoiceData) => {
+    try {
+      const response = await APIHelper(
+        "POST",
+        API.DaedalusOrderIntake.CreateDaedalusInvoice,
+        invoiceData,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error creating Invoice:", error);
+      throw error;
+    }
+  },
+
+  cancelQty: async (cancelData) => {
+    try {
+      const response = await APIHelper(
+        "POST",
+        API.DaedalusOrderIntake.CancelDaedalusOrderQty,
+        cancelData,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error cancelling Order Quantity:", error);
+      throw error;
+    }
+  },
+
+  getItemCombinations: async () => {
+    try {
+      const response = await APIHelper(
+        "GET",
+        API.DaedalusOrderIntake.GetDaedalusBudgetItemCombinations,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error fetching Item Combinations data:", error);
+      throw error;
+    }
+  },
+
+  getCombinations: async (fy) => {
+    try {
+      const response = await APIHelper(
+        "GET",
+        `${API.DaedalusOrderIntake.GetDaedalusBudgetCombinations}?financialYear=${encodeURIComponent(fy)}`,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error fetching Combinations data:", error);
+      throw error;
+    }
+  },
+  getGrid: async (fy) => {
+    try {
+      const response = await APIHelper(
+        "GET",
+        `${API.DaedalusOrderIntake.GetDaedalusBudgetGrid}?financialYear=${encodeURIComponent(fy)}`,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error fetching Grid data:", error);
+      throw error;
+    }
+  },
+
+  addCombination: async (data) => {
+    try {
+      const response = await APIHelper(
+        "POST",
+        API.DaedalusOrderIntake.AddDaedalusBudgetCombination,
+        data,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error adding Combination:", error);
+      throw error;
+    }
+  },
+
+  setCombinationActive: async (data) => {
+    try {
+      const response = await APIHelper(
+        "POST",
+        API.DaedalusOrderIntake.SetDaedalusBudgetCombinationActive,
+        data,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error setting Combination active status:", error);
+      throw error;
+    }
+  },
+
+  saveGrid: async (data) => {
+    try {
+      const response = await APIHelper(
+        "POST",
+        API.DaedalusOrderIntake.SaveDaedalusBudgetGrid,
+        data,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error saving Grid data:", error);
+      throw error;
+    }
+  },
+
+  getCustomerAddresses: async (customerId, includeInactive = true) => {
+    try {
+      const response = await APIHelper(
+        "GET",
+        `${API.DaedalusOrderIntake.GetCustomerAddresses}/${customerId}`,
+      );
+      return response;
+    } catch (error) {
+      console.error("Error fetching Customer Addresses data:", error);
+      throw error;
+    }
+  },
+};
+
+export default DaedalusOrderIntakeService;
