@@ -1,6 +1,6 @@
 window.APP_CONFIG = {
-  // API_BASE_URL: "https://uatimlws.indef.com/api",
-  API_BASE_URL: "https://localhost:7299/api",
+  API_BASE_URL: "https://uatimlws.indef.com/api",
+  // API_BASE_URL: "https://localhost:7299/api",
   // API_BASE_URL: "https://imlws.indef.com/api",
   AUTH_TOKEN:
     "u3WEqgV08uC1JGUpv8J/izZNAobfWQyXOvfAILNczNqqQ/zqJvrVBfZ8XpxhCCxflNXy1NJy8Goc1E2VxLHVAw==",
